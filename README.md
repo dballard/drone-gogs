@@ -5,7 +5,7 @@ Create a user on Gogs for posting build notifications (like 'buildbot') and gene
 Use in drone.yml:
 
     notify-gogs:
-      image: drone-gogs
+      image: mindstab/drone-gogs
       when:
         event: pull_request
       secrets: [gogs_account_token]
