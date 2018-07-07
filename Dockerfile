@@ -4,4 +4,4 @@ RUN apk add --no-cache ca-certificates curl
 
 COPY gogs-notify /
 
-ENTRYPOINT [/gogs-notify]
+ENTRYPOINT ["/gogs-notify"]
