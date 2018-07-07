@@ -3,13 +3,11 @@
 URL="$PLUGIN_GOGS_URL/api/v1/repos/$DRONE_REPO/issues/$DRONE_PULL_REQUEST/comments"
 
 RESULT=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token $GOGS_ACCOUNT_TOKEN" -H "Content-Type: application/json" -d "{\"Body\": \"Drone Build Status: $DRONE_BUILD_STATUS\n\n$DRONE_BUILD_LINK\"}" -X POST $URL)
-CURL_RESULT=$?
 
 if [ $RESULT -eq 201 ] 
 then
 	echo "Success posting to $URL"
 else
-	echo "ERROR posting to $URL"
-	echo "ERROR http: $RESULT curl: $CURL_RESULT"
+	echo "ERROR HTTP $RESULT posting to $URL"
 	exit 1
 fi
