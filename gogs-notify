@@ -1,8 +1,8 @@
 #!/bin/sh
  
-URL="$GOGS_URL/api/v1/repos/${DRONE_REPO}/issues/${DRONE_PULL_REQUEST}/comments"
+URL="$PLUGIN_GOGS_URL/api/v1/repos/$DRONE_REPO/issues/$DRONE_PULL_REQUEST/comments"
 
-RESULT=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token $GOGS_ACCOUNT_TOKEN" -H "Content-Type: application/json" -d "{\"Body\": \"Drone Build Status: ${DRONE_BUILD_STATUS}\n\n${DRONE_BUILD_LINK}\"}" -X POST $URL)
+RESULT=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token $GOGS_ACCOUNT_TOKEN" -H "Content-Type: application/json" -d "{\"Body\": \"Drone Build Status: $DRONE_BUILD_STATUS\n\n$DRONE_BUILD_LINK\"}" -X POST $URL)
 CURL_RESULT=$?
 
 if [ $RESULT -eq 201 ] 
